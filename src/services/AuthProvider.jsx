@@ -21,6 +21,8 @@ export const AuthProvider = ({ children }) => {
   const [requester, setRequester] = useState({});
   let session = "";
 
+  console.log('user', user)
+
   const login = async (email, password, server) => {
     setLoading(true);
     setErrorMessage("");

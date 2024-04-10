@@ -10,6 +10,8 @@ const Tenants = () => {
     "cardContentBg.dark"
   );
 
+  console.log('tenant', tenantCurrent)
+
   const handleTenantChange = (e) => {
     const tenant = tenants.items.find(item => item.uuid === e.target.value)
     setTenantCurrent(tenant)
