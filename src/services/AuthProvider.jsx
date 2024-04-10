@@ -5,10 +5,8 @@ import {
   getSessionOnStorage
 } from "../stores/LocalStorage";
 
-import Wazo from "@wazo/sdk";
-import { WazoApiClient } from '@wazo/sdk'
+import Wazo, { WazoApiClient, ApiRequester } from "@wazo/sdk";
 import { t } from "i18next";
-import { ApiRequester } from "@wazo/sdk";
 
 const AuthContext = createContext();
 
@@ -30,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     const client = new WazoApiClient({
       server: server,
       agent: null,
-      clientId: 'toriportal',
+      clientId: 'toriphone-ui',
       isMobile: false
     })
 
@@ -42,7 +40,7 @@ export const AuthProvider = ({ children }) => {
       const apiclient = new ApiRequester({
         server: server,
         refreshTokenCallback: () => {},
-        clientId: 'toriportal',
+        clientId: 'toriphone-ui',
         agent: null,
         token: session.token
       })

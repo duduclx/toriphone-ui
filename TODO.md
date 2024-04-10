@@ -8,9 +8,6 @@ favicon
 login logo
 header logo
 
-## apploader
-doit prendre toute la page (flex)
-
 # header sidebar
 ajouter le nom du serveur
 

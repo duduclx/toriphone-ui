@@ -15,7 +15,8 @@ const AppLoader = () => {
           alignItems="center"
           flexDirection="column"
           bg={pageBg}
-          flex={1}
+          flex="1"
+          height="100vh"
         >
           <Image
             boxSize="150px"
