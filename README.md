@@ -1,7 +1,12 @@
 # toriphone ui
 
-This project use Vite and React.
-It also uses the chakra-ui framwork.
+This project is an alternative to Wazo-ui.
+
+It uses vite, React and Chakra-ui.
+
+As a community project, we all need your time and work to make it works.
+
+Keep in mind, the project is just starting, and is not my priority right now.
 
 ## run
 
@@ -27,6 +32,6 @@ It also uses the chakra-ui framwork.
 to go:
 [toriphone-ui](https://toriphone-ui.web.app/)
 
-use your root credentials (or other admin account)
-type the domain name or ip of your wazo server.
+* use your root credentials (or other admin account)
+* type the domain name or ip of your wazo server.
 
