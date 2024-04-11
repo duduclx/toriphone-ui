@@ -25,7 +25,7 @@ const UserAdd = () => {
     const subscriptionTypes = ['Voice', 'Unified Communication', 'Collaboration', 'Customer Relationship']
     const protocoles = ['SIP', 'SCCP', 'CUSTOM']
 
-    const context = tenantContexts.items.filter((context) => {
+    const context = tenantContexts.items?.filter((context) => {
         return context.user_ranges.length > 0;
     })
     //console.log('new context', context)
