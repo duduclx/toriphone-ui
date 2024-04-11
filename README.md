@@ -8,6 +8,10 @@ As a community project, we all need your time and work to make it works.
 
 Keep in mind, the project is just starting, and is not my priority right now.
 
+It's actually look like Wazo-ui, but it's not the plan.
+
+We have to rethink the whole interface.
+
 ## run
 
 ```npm run dev```
