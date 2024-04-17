@@ -20,7 +20,7 @@ const UserAdd = () => {
     const {tenantContextsGet, tenantUsersGroups, tenantSipTemplates, tenantContexts} = useApi();
     //console.log('usgrp', tenantUsersGroups)
     //console.log('templates', tenantSipTemplates)
-    //console.log('context', tenantContexts)
+    console.log('context', tenantContexts)
 
     const subscriptionTypes = ['Voice', 'Unified Communication', 'Collaboration', 'Customer Relationship']
     const protocoles = ['SIP', 'SCCP', 'CUSTOM']

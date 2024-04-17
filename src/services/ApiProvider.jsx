@@ -111,7 +111,7 @@ export const ApiProvider = ({children}) => {
         const fetchData = async () => {
             await serverInfosGet()
             await tenantsGet()
-            //await tenantContextsGet()
+            await tenantContextsGet()
             //await tenantUsersGroupsGet()
             //await tenantSipTemplatesGet()
             setIsLoading(false);
