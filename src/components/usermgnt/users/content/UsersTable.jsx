@@ -19,6 +19,8 @@ import UsersTableContent from "./UsersTableContent";
 const UsersTable = () => {
   const { tenantUsers } = useApi();
 
+  console.log(tenantUsers)
+
   return (
     <>
     {tenantUsers?.items && (
