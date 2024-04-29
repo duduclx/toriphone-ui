@@ -26,7 +26,7 @@ export const ApiProvider = ({children}) => {
     const [tenantVoicemails, setTenantVoicemails] = useState({})
 
     const serverInfosGet = async () => {
-        const infos = await requester.call('confd/1.1/infos')
+        const infos = await requester.get('confd/1.1/infos')
         setServerInfos(infos)
     }
 
@@ -43,9 +43,18 @@ export const ApiProvider = ({children}) => {
         setTenantUsers(users)
     }
 
-    const tenantUserAdd = async () => {
-
+    const tenantUserAdd = async (user) => {
         requester.setTenant(tenantCurrent.uuid)
+        //const newUser = await requester.get('confd/1.1/users?recurse=false')
+        //console.log('users',newUser)
+
+        try{
+            const newUser = await requester.post('confd/1.1/users', user, null, requester.successResponseParser)
+            console.log('users',newUser)
+            //setTenantUsers()
+        } catch (e) {
+            console.log(e)
+        }
 
     }
 
@@ -128,6 +137,7 @@ export const ApiProvider = ({children}) => {
         tenantUsers,
         tenantUsersGet,
         tenantUsersGroups,
+        tenantUserAdd,
         tenantSipTemplates,
         tenantContexts,
         tenantContextsGet,

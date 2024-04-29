@@ -17,7 +17,7 @@ const UsersTableContent = ({user}) => {
         {user.email}
         </Td>
       <Td>
-        {user.lines[0].caller_id_num}
+        {user.lines[0]?.caller_id_num}
       </Td>
       <Td>
       <IconButton

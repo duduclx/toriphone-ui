@@ -34,6 +34,8 @@ export const AuthProvider = ({ children }) => {
       isMobile: false
     })
 
+    
+
     // retrieve session
     try {
       session = await client.auth.logIn({username: email.trim(), password: password.trim()})
@@ -59,6 +61,9 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
     setSessionOnStorage(session)
     setUser(session);
+
+    //const test = await client.auth.listTenants()
+    //console.log('test', test)
 
     // refresh token
     Wazo.Auth.setOnRefreshToken((token) => {

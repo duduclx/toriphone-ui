@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Modal,
@@ -17,10 +17,33 @@ import {
 import { useApi } from "../../../../services/ApiProvider";
 
 const UserAdd = () => {
-    const {tenantContextsGet, tenantUsersGroups, tenantSipTemplates, tenantContexts} = useApi();
+    const {tenantContextsGet, tenantUsersGroups, tenantSipTemplates, tenantContexts, tenantUserAdd} = useApi();
+    const [newUser, setNewUser] = useState({
+      auth: {
+        email_address: '',
+        enabled: true,
+        firstname: '',
+        lastname: '',
+        password: '',
+        purpose: 'user',
+        username: ''
+      },
+      firstname: '',
+      lastname: '',
+      email: '',
+      //call_record_enabled: true,
+      call_record_incoming_external_enabled: true,
+      call_record_incoming_internal_enabled: true,
+      call_record_outgoing_external_enabled: true,
+      call_record_outgoing_internal_enabled: true,
+      //call_transfer_enabled: true,
+      //online_call_record_enabled: true,
+      outgoing_caller_id: "default"
+    })
     //console.log('usgrp', tenantUsersGroups)
     //console.log('templates', tenantSipTemplates)
     console.log('context', tenantContexts)
+    //tenantUserAdd({})
 
     // wazo comm for bill const subscriptionTypes = ['Voice', 'Unified Communication', 'Collaboration', 'Customer Relationship']
     const protocoles = ['SIP', 'SCCP', 'CUSTOM']
@@ -42,13 +65,25 @@ const UserAdd = () => {
           <ModalCloseButton />
           <ModalBody>
             <Input 
-            placeholder="prénom"/>
+            placeholder="prénom"
+            onChange={(e) => setNewUser({ ...newUser, auth: { ...newUser.auth, firstname: e.target.value } })}/>
             <Input 
-            placeholder="nom"/>
+            placeholder="nom"
+            onChange={(e) => setNewUser({ ...newUser, auth: { ...newUser.auth, lastname: e.target.value } })}/>
             <Input 
-            placeholder="email"/>
+            placeholder="email"
+            onChange={(e) => setNewUser(prevState => ({
+              ...prevState,
+              auth: {
+                  ...prevState.auth,
+                  email_address: e.target.value,
+                  username: e.target.value
+              },
+              email: e.target.value
+          }))}/>
             <Input 
-            placeholder="mot de passe"/>
+            placeholder="mot de passe"
+            onChange={(e) => setNewUser({ ...newUser, auth: { ...newUser.auth, password: e.target.value } })}/>
             <Select
             bg={cardContentBg}
             sx={{
@@ -67,7 +102,7 @@ const UserAdd = () => {
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            <Button variant="ghost" onClick={() => tenantUserAdd(newUser)}>Secondary Action</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
