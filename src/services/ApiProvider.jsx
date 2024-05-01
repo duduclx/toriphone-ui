@@ -9,110 +9,68 @@ export const useApi = () => {
     return useContext(ApiContext);
 }
 
+import { useInfos } from "./api/Info";
+import { useTenants } from "./api/Tenants";
+import { useUsers } from "./api/Users";
+import { useGroups } from "./api/Groups";
+import { usePolicies } from "./api/Policies";
+import { useContexts } from "./api/Contexts";
+import { useSipTemplates } from "./api/SipTemplates";
+import { useExtensions } from "./api/Extensions";
+import { useVoicemails } from "./api/Voicemails";
+import { useDevices } from "./api/Devices";
+import { useLines } from "./api/Lines";
+import { useIncalls } from "./api/Incalls";
+import { useOutcalls } from "./api/Outcalls";
+import { useTrunks } from "./api/Trunks";
+import { useSchedules } from "./api/Schedules";
+import { useCallpickup } from "./api/Callpickup";
+import { useCallPermissions } from "./api/CallPermissions";
+
 export const ApiProvider = ({children}) => {
-    const {user, requester} = useAuth();
-    const [isLoading, setIsLoading] = useState(true);
-    const [serverInfos, setServerInfos] = useState({})
-    const [tenants, setTenants] = useState({})
-    const [tenantCurrent, setTenantCurrent] = useState({})
-    const [tenantUsers, setTenantUsers] = useState({})
-    const [tenantUsersGroups, setTenantUsersGroups] = useState({})
-    const [tenantSipTemplates, setTenantsipTemplates] = useState({})
-    const [tenantContexts, setTenantContexts] = useState({})
-    const [tenantExtensions, setTenantExtensions] = useState({})
-    const [tenantGroups, setTenantGroups] = useState({})
-    const [tenantLines, setTenantLines] = useState({})
-    const [tenantDevices, setTenantDevices] = useState({})
-    const [tenantVoicemails, setTenantVoicemails] = useState({})
+    const { user } = useAuth();
+    const [ isLoading, setIsLoading ] = useState(true)
+    const { serverInfos, serverInfosGet } = useInfos()
+    const { tenants, tenantsGet, tenantCurrent, setTenantCurrent } = useTenants()
+    const { users, usersGet, userCreate } = useUsers()
+    const { groups, groupsGet } = useGroups()
+    const { policies, policiesGet } = usePolicies()
+    const { contexts, contextsGet } = useContexts()
+    const { sipTemplates, sipTemplatesGet } = useSipTemplates()
+    const { extensions, extensionsGet } = useExtensions()
+    const { voicemails, voicemailsGet } = useVoicemails()
+    const { devices, devicesGet } = useDevices()
+    const { lines, linesGet } = useLines()
+    const { incalls, incallsGet } = useIncalls()
+    const { outcalls, outcallsGet } = useOutcalls()
+    const { trunks, trunksGet } = useTrunks()
+    const { schedules, schedulesGet } = useSchedules()
+    const { callpickups, callpickupsGet } = useCallpickup()
+    const { callPermissions, callPermissionsGet } = useCallPermissions()
 
-    const serverInfosGet = async () => {
-        const infos = await requester.get('confd/1.1/infos')
-        setServerInfos(infos)
-    }
+    const ALPHANUMERIC_POOL = 'abcdefghijklmnopqrstuvwxyz0123456789';
 
-    const tenantsGet = async () => {
-        requester.fetchOptions = {}
-        const allTenants = await requester.call('auth/0.1/tenants?offset=0')
-        setTenants(allTenants)
-        setTenantCurrent(allTenants.items[0])
-    }
-
-    const tenantUsersGet = async () => {
-        requester.setTenant(tenantCurrent.uuid)
-        const users = await requester.call('confd/1.1/users?recurse=false');
-        setTenantUsers(users)
-    }
-
-    const tenantUserAdd = async (user) => {
-        requester.setTenant(tenantCurrent.uuid)
-        //const newUser = await requester.get('confd/1.1/users?recurse=false')
-        //console.log('users',newUser)
-
-        try{
-            const newUser = await requester.post('confd/1.1/users', user, null, requester.successResponseParser)
-            console.log('users',newUser)
-            //setTenantUsers()
-        } catch (e) {
-            console.log(e)
+    // Fonction pour générer une chaîne aléatoire
+    const generateString = (length = 8) => {
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            result += ALPHANUMERIC_POOL.charAt(Math.floor(Math.random() * ALPHANUMERIC_POOL.length));
         }
+        return result;
+    };
 
-    }
+    const userCreateLineSip = () => {
+        const name = generateString()
 
-    const tenantUsersGroupsGet = async () => {
-        requester.setTenant(tenantCurrent.uuid)
-        const groups = await requester.call('auth/0.1/groups?recurse=false');
-        setTenantUsersGroups(groups)
-    }
-
-    const tenantSipTemplatesGet = async () => {
-        requester.setTenant(tenantCurrent.uuid)
-        const templates = await requester.call('confd/1.1/endpoints/sip/templates?recurse=false');
-        setTenantsipTemplates(templates)
-    }
-
-    const tenantContextsGet = async () => {
-        requester.setTenant(tenantCurrent.uuid)
-        const contexts = await requester.call('confd/1.1/contexts?recurse=false');
-        setTenantContexts(contexts)
-    }
-
-    const tenantExtensionsGet = async () => {
-        requester.setTenant(tenantCurrent.uuid)
-        const extensions = await requester.call('confd/1.1/extensions?recurse=false');
-        setTenantExtensions(extensions)
-    }
-
-    const tenantGroupsGet = async () => {
-        requester.setTenant(tenantCurrent.uuid)
-        const groups = await requester.call('confd/1.1/groups?recurse=false');
-        setTenantGroups(groups)
-    }
-
-    const tenantLinesGet = async () => {
-        requester.setTenant(tenantCurrent.uuid)
-        const lines = await requester.call('confd/1.1/lines?recurse=false');
-        setTenantLines(lines)
-    }
-
-    const tenantDevicesGet = async () => {
-        requester.setTenant(tenantCurrent.uuid)
-        const devices = await requester.call('confd/1.1/devices?recurse=false')
-        setTenantDevices(devices)
-    }
-
-    const tenantVoicemailsGet = async () => {
-        requester.setTenant(tenantCurrent.uuid)
-        const voicemails = await requester.call('confd/1.1/voicemails?recurse=false')
-        setTenantVoicemails(voicemails)
     }
 
     useEffect(() => {
         if (tenantCurrent) {
-            tenantUsersGet();
-            tenantContextsGet()
-            tenantExtensionsGet()
-            tenantUsersGroupsGet()
-            tenantSipTemplatesGet()
+            usersGet()
+            contextsGet()
+            extensionsGet()
+            groupsGet()
+            sipTemplatesGet()
         }
     }, [tenantCurrent]);
 
@@ -120,7 +78,7 @@ export const ApiProvider = ({children}) => {
         const fetchData = async () => {
             await serverInfosGet()
             await tenantsGet()
-            await tenantContextsGet()
+            await contextsGet()
             //await tenantUsersGroupsGet()
             //await tenantSipTemplatesGet()
             setIsLoading(false);
@@ -134,22 +92,36 @@ export const ApiProvider = ({children}) => {
         tenantsGet,
         tenantCurrent,
         setTenantCurrent,
-        tenantUsers,
-        tenantUsersGet,
-        tenantUsersGroups,
-        tenantUserAdd,
-        tenantSipTemplates,
-        tenantContexts,
-        tenantContextsGet,
-        tenantExtensions,
-        tenantGroups,
-        tenantGroupsGet,
-        tenantLines,
-        tenantLinesGet,
-        tenantDevices,
-        tenantDevicesGet,
-        tenantVoicemails,
-        tenantVoicemailsGet
+        users,
+        userCreate,
+        groups,
+        groupsGet,
+        policies,
+        policiesGet,
+        contexts,
+        contextsGet,
+        sipTemplates,
+        sipTemplatesGet,
+        extensions,
+        extensionsGet,
+        devices,
+        devicesGet,
+        voicemails,
+        voicemailsGet,
+        lines,
+        linesGet,
+        incalls,
+        incallsGet,
+        outcalls,
+        outcallsGet,
+        trunks,
+        trunksGet,
+        schedules,
+        schedulesGet,
+        callpickups,
+        callpickupsGet,
+        callPermissions,
+        callPermissionsGet
     }
 
     if (isLoading) {

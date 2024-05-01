@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 
 import {
     Table,
@@ -16,11 +16,11 @@ import {
   import GroupsTableContent from './GroupsTableContent';
 
 const GroupsTable = () => {
-    const { tenantCurrent, tenantGroups, tenantGroupsGet } = useApi();
+    const { tenantCurrent, groups, groupsGet } = useApi();
 
   useEffect(() => {
     if (tenantCurrent) {
-        tenantGroupsGet();
+      groupsGet();
     }
   }, [tenantCurrent]);
 
@@ -51,8 +51,8 @@ const GroupsTable = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {tenantGroups?.items &&
-                  tenantGroups.items.map((group, index) => (
+                {groups?.items &&
+                  groups.items.map((group, index) => (
                     <GroupsTableContent group={group} key={index} />
                   ))}
               </Tbody>

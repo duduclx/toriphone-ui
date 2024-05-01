@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {Tr, Td, IconButton} from "@chakra-ui/react";
-
 import { FaPen, FaTrashAlt } from "react-icons/fa";
 
 const UsersTableContent = ({user}) => {

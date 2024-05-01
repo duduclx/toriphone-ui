@@ -17,10 +17,11 @@ import {
 import ExtensionsTableContent from './ExtensionsTableContent'
 
 const ExtensionsTable = () => {
-    const { tenantExtensions } = useApi();
+    const { extensions } = useApi();
+
   return (
     <>
-    {tenantExtensions?.items && (
+    {extensions?.items && (
     <Flex
       flexDirection="column"
       justifyContent="center"
@@ -43,12 +44,12 @@ const ExtensionsTable = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {tenantExtensions.items.length == 0 ? (
+            {extensions.items.length == 0 ? (
               <Tr>
                 <Td colSpan="5" textAlign="center">Aucun résultat</Td>
               </Tr>
             ) : (
-                tenantExtensions.items.map((extension, index) => (
+              extensions.items.map((extension, index) => (
                 <ExtensionsTableContent extension={extension} key={index} />
               ))
             )}

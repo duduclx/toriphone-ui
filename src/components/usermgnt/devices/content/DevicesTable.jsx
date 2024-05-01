@@ -16,11 +16,11 @@ import {
   import DevicesTableContent from './DevicesTableContent';
 
 const DevicesTable = () => {
-    const { tenantCurrent, tenantDevices, tenantDevicesGet } = useApi();
+    const { tenantCurrent, devices, devicesGet } = useApi();
 
     useEffect(() => {
       if (tenantCurrent) {
-        tenantDevicesGet();
+        devicesGet();
       }
     }, [tenantCurrent]);
   
@@ -49,8 +49,8 @@ const DevicesTable = () => {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {tenantDevices?.items &&
-                    tenantDevices.items.map((device, index) => (
+                  {devices?.items &&
+                    devices.items.map((device, index) => (
                       <DevicesTableContent device={device} key={index} />
                     ))}
                 </Tbody>

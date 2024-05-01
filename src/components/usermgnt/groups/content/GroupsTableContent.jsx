@@ -15,7 +15,7 @@ const GroupsTableContent = ({group}) => {
         {group.label}
         </Td>
       <Td>
-        {group.extensions[0].exten}
+        {group.extensions[0]?.exten}
       </Td>
       <Td>
       </Td>

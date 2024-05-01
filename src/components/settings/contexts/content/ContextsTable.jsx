@@ -17,10 +17,11 @@ import { useApi } from '../../../../services/ApiProvider';
 import ContextsTableContent from './ContextsTableContent';
 
 const ContextsTable = () => {
-    const { tenantContexts } = useApi();
+    const { contexts } = useApi();
+    
   return (
     <>
-    {tenantContexts?.items && (
+    {contexts?.items && (
     <Flex
       flexDirection="column"
       justifyContent="center"
@@ -44,12 +45,12 @@ const ContextsTable = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {tenantContexts.items.length == 0 ? (
+            {contexts.items.length == 0 ? (
               <Tr>
                 <Td colSpan="5" textAlign="center">Aucun résultat</Td>
               </Tr>
             ) : (
-                tenantContexts.items.map((context, index) => (
+              contexts.items.map((context, index) => (
                 <ContextsTableContent context={context} key={index} />
               ))
             )}

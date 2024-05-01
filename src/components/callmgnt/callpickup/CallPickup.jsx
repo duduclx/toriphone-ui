@@ -1,6 +1,8 @@
 import React from 'react'
 import { Flex, Text, Divider, useColorModeValue } from '@chakra-ui/react'
 
+import CallPickupTable from './content/CallPickupTable';
+
 const CallPickup = () => {
     const pageBg = useColorModeValue("pageBg.light", "pageBg.dark");
     return (
@@ -8,7 +10,7 @@ const CallPickup = () => {
           <Text p={2} as='b' fontSize='3xl'>Call Pickup</Text>
           <Divider />
           <Flex flexDirection="row" flex="1" p="2" flexWrap="wrap" overflowX="auto" justifyContent="flex-start" alignContent="flex-start">
-          
+            <CallPickupTable />
           </Flex>
       </Flex>
     )

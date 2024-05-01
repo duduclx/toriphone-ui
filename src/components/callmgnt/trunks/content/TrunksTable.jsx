@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import {
     Table,
@@ -12,16 +12,22 @@ import {
     Td,
   } from "@chakra-ui/react";
 
-  import { useApi } from '../../../../services/ApiProvider';
+import { useApi } from '../../../../services/ApiProvider';
 
-import SipTemplatesTableContent from './SipTemplatesTableContent';
+import TrunksTableContent from './TrunksTableContent';
 
-const SipTemplatesTable = () => {
-    const { sipTemplates } = useApi();
-    
+const TrunksTable = () => {
+    const { tenantCurrent, trunks, trunksGet } = useApi()
+
+    useEffect(() => {
+        if (tenantCurrent) {
+            trunksGet();
+        }
+      }, [tenantCurrent]);
+
   return (
     <>
-    {sipTemplates?.items && (
+    {trunks?.items && (
     <Flex
       flexDirection="column"
       justifyContent="center"
@@ -45,13 +51,13 @@ const SipTemplatesTable = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {sipTemplates.items.length == 0 ? (
+            {trunks.items.length == 0 ? (
               <Tr>
                 <Td colSpan="5" textAlign="center">Aucun résultat</Td>
               </Tr>
             ) : (
-              sipTemplates.items.map((template, index) => (
-                <SipTemplatesTableContent template={template} key={index} />
+                trunks.items.map((trunk, index) => (
+                <TrunksTableContent trunk={trunk} key={index} />
               ))
             )}
           </Tbody>
@@ -60,7 +66,7 @@ const SipTemplatesTable = () => {
     </Flex>
     )}
     </>
-  );
+  )
 }
 
-export default SipTemplatesTable
+export default TrunksTable

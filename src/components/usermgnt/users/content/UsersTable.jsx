@@ -17,13 +17,12 @@ import { useApi } from "../../../../services/ApiProvider";
 import UsersTableContent from "./UsersTableContent";
 
 const UsersTable = () => {
-  const { tenantUsers } = useApi();
-
-  console.log(tenantUsers)
+  //const { tenantUsers } = useApi();
+  const { users } = useApi();
 
   return (
     <>
-    {tenantUsers?.items && (
+    {users?.items && (
     <Flex
       flexDirection="column"
       justifyContent="center"
@@ -48,12 +47,12 @@ const UsersTable = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {tenantUsers.items.length == 0 ? (
+            {users.items.length == 0 ? (
               <Tr>
                 <Td colSpan="5" textAlign="center">Aucun résultat</Td>
               </Tr>
             ) : (
-              tenantUsers.items.map((user, index) => (
+              users.items.map((user, index) => (
                 <UsersTableContent user={user} key={index} />
               ))
             )}

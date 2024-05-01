@@ -16,11 +16,11 @@ import { useApi } from '../../../../services/ApiProvider';
   import LinesTablesContent from './LinesTablesContent';
 
 const LinesTable = () => {
-    const { tenantCurrent, tenantLines, tenantLinesGet } = useApi();
+    const { tenantCurrent, lines, linesGet } = useApi();
 
     useEffect(() => {
       if (tenantCurrent) {
-        tenantLinesGet();
+        linesGet();
       }
     }, [tenantCurrent]);
   
@@ -52,8 +52,8 @@ const LinesTable = () => {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {tenantLines?.items &&
-                    tenantLines.items.map((line, index) => (
+                  {lines?.items &&
+                    lines.items.map((line, index) => (
                       <LinesTablesContent line={line} key={index} />
                     ))}
                 </Tbody>

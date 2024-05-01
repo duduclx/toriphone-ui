@@ -16,11 +16,11 @@ import {
   import VoicemailsTableContent from './VoicemailsTableContent';
 
 const VoicemailsTable = () => {
-    const { tenantCurrent, tenantVoicemails, tenantVoicemailsGet } = useApi();
+    const { tenantCurrent, voicemails, voicemailsGet } = useApi();
 
     useEffect(() => {
       if (tenantCurrent) {
-        tenantVoicemailsGet();
+        voicemailsGet();
       }
     }, [tenantCurrent]);
   
@@ -49,8 +49,8 @@ const VoicemailsTable = () => {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {tenantVoicemails?.items &&
-                    tenantVoicemails.items.map((voicemail, index) => (
+                  {voicemails?.items &&
+                    voicemails.items.map((voicemail, index) => (
                       <VoicemailsTableContent voicemail={voicemail} key={index} />
                     ))}
                 </Tbody>
