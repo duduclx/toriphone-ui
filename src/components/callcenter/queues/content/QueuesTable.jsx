@@ -1,33 +1,33 @@
 import React, { useEffect } from 'react'
 
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  TableCaption,
-  TableContainer,
-  Flex,
-  Td,
-} from "@chakra-ui/react";
+    Table,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    TableCaption,
+    TableContainer,
+    Flex,
+    Td,
+  } from "@chakra-ui/react";
 
-  import { useApi } from '../../../../services/ApiProvider';
+import { useApi } from '../../../../services/ApiProvider';
 
-  import DevicesTableContent from './DevicesTableContent';
+import QueuesTableContent from './QueuesTableContent';
 
-const DevicesTable = () => {
-    const { tenantCurrent, devices, devicesGet } = useApi();
+const QueuesTable = () => {
+    const { tenantCurrent, queues, queuesGet } = useApi()
 
     useEffect(() => {
       if (tenantCurrent) {
-        devicesGet();
+        queuesGet();
       }
     }, [tenantCurrent]);
   
     return (
       <>
-      {devices?.items && (
+      {queues?.items && (
       <Flex
         flexDirection="column"
         justifyContent="center"
@@ -51,13 +51,13 @@ const DevicesTable = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {devices.items.length == 0 ? (
+              {queues.items.length == 0 ? (
                 <Tr>
                   <Td colSpan="5" textAlign="center">Aucun résultat</Td>
                 </Tr>
               ) : (
-                devices.items.map((device, index) => (
-                  <DevicesTableContent device={device} key={index} />
+                queues.items.map((queue, index) => (
+                  <QueuesTableContent queue={queue} key={index} />
                 ))
               )}
             </Tbody>
@@ -69,4 +69,4 @@ const DevicesTable = () => {
     )
 }
 
-export default DevicesTable
+export default QueuesTable

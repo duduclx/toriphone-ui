@@ -33,7 +33,9 @@ import {
   FaProjectDiagram,
   FaFile,
   FaCrown,
-  FaCodeBranch
+  FaCodeBranch,
+  FaUserSecret,
+  FaLock
 } from "react-icons/fa";
 import {
   FaUsers,
@@ -217,9 +219,9 @@ const Sidebar = ({ serverPage, setServerPage }) => {
                     w="100%"
                     justifyContent="flex-start"
                     leftIcon={<FaFilter />}
-                    onClick={() => setServerPage("bsFilter")}
+                    onClick={() => setServerPage("callFilters")}
                     backgroundColor={
-                      serverPage === "bsFilter"
+                      serverPage === "callFilters"
                         ? "var(--chakra-colors-whiteAlpha-200)"
                         : "transparent"
                     }
@@ -362,6 +364,98 @@ const Sidebar = ({ serverPage, setServerPage }) => {
                     }
                   >
                     skills
+                  </Button>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem
+                borderTop="none"
+                borderTopWidth="0"
+                borderBottom="none"
+                borderBottomWidth="0"
+              >
+                <AccordionButton>
+                  <HStack justifyContent="flex-start" width="100%">
+                    <FaUserSecret />
+                    <Text>credentials</Text>
+                    <Spacer />
+                    <AccordionIcon />
+                  </HStack>
+                </AccordionButton>
+                <AccordionPanel>
+                  <Button
+                    variant="ghost"
+                    my={1}
+                    w="100%"
+                    justifyContent="flex-start"
+                    leftIcon={<FaCodeBranch />}
+                    onClick={() => setServerPage("identities")}
+                    backgroundColor={
+                      serverPage === "identities"
+                        ? "var(--chakra-colors-whiteAlpha-200)"
+                        : "transparent"
+                    }
+                  >
+                    identities
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    my={1}
+                    w="100%"
+                    justifyContent="flex-start"
+                    leftIcon={<FaProjectDiagram />}
+                    onClick={() => setServerPage("policiesGroups")}
+                    backgroundColor={
+                      serverPage === "policiesGroups"
+                        ? "var(--chakra-colors-whiteAlpha-200)"
+                        : "transparent"
+                    }
+                  >
+                    policies groups
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    my={1}
+                    w="100%"
+                    justifyContent="flex-start"
+                    leftIcon={<FaLock />}
+                    onClick={() => setServerPage("policies")}
+                    backgroundColor={
+                      serverPage === "policies"
+                        ? "var(--chakra-colors-whiteAlpha-200)"
+                        : "transparent"
+                    }
+                  >
+                    policies
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    my={1}
+                    w="100%"
+                    justifyContent="flex-start"
+                    leftIcon={<FaLock />}
+                    onClick={() => setServerPage("ldap")}
+                    backgroundColor={
+                      serverPage === "ldap"
+                        ? "var(--chakra-colors-whiteAlpha-200)"
+                        : "transparent"
+                    }
+                  >
+                    ldap
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    my={1}
+                    w="100%"
+                    justifyContent="flex-start"
+                    leftIcon={<FaLock />}
+                    onClick={() => setServerPage("externalAuth")}
+                    backgroundColor={
+                      serverPage === "externalAuth"
+                        ? "var(--chakra-colors-whiteAlpha-200)"
+                        : "transparent"
+                    }
+                  >
+                    external auth
                   </Button>
                 </AccordionPanel>
               </AccordionItem>

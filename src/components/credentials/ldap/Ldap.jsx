@@ -1,19 +1,19 @@
 import React from 'react'
 import { Flex, Text, Divider, useColorModeValue } from '@chakra-ui/react'
 
-import SkillsTable from './content/SkillsTable';
+import LdapContent from './content/LdapContent';
 
-const Skills = () => {
+const Ldap = () => {
     const pageBg = useColorModeValue("pageBg.light", "pageBg.dark");
     return (
       <Flex flexDirection="column" flex="1" p={2} bg={pageBg}>
-          <Text p={2} as='b' fontSize='3xl'>skills</Text>
+          <Text p={2} as='b' fontSize='3xl'>LDAP</Text>
           <Divider />
           <Flex flexDirection="row" flex="1" p="2" flexWrap="wrap" overflowX="auto" justifyContent="flex-start" alignContent="flex-start">
-            <SkillsTable />
+            <LdapContent />
           </Flex>
       </Flex>
     )
 }
 
-export default Skills
+export default Ldap

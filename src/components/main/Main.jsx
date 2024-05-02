@@ -11,7 +11,7 @@ import Voicemails from "../usermgnt/voicemails/Voicemails";
 
 import Incalls from "../callmgnt/incalls/Incalls";
 import Outcalls from "../callmgnt/outcalls/Outcalls";
-import BsFilter from "../callmgnt/bsfilters/BsFilter";
+import Callfilters from "../callmgnt/callfilters/CallFilters";
 import CallPermissions from "../callmgnt/callpermissions/CallPermissions";
 import CallPickup from "../callmgnt/callpickup/CallPickup";
 import Schedules from "../callmgnt/schedules/Schedules";
@@ -22,9 +22,17 @@ import Queues from "../callcenter/queues/Queues";
 import SkillRules from "../callcenter/skillrules/SkillRules";
 import Skills from "../callcenter/skills/Skills";
 
+import Identities from "../credentials/identities/Identities";
+import PoliciesGroups from "../credentials/policiesGroups/PoliciesGroups";
+import Policies from "../credentials/policies/Policies";
+import Ldap from "../credentials/ldap/Ldap";
+import ExternalAuth from "../credentials/externalAuth/ExternalAuth";
+
 import Extensions from "../settings/extensions/Extensions";
 import Contexts from "../settings/contexts/Contexts";
 import SipTemplates from "../settings/siptemplates/SipTemplates";
+
+
 import { Flex } from "@chakra-ui/react";
 
 const Main = () => {
@@ -41,7 +49,7 @@ const Main = () => {
 
         {serverPage === "incalls" && <Incalls />}
         {serverPage === "outcalls" && <Outcalls />}
-        {serverPage === "bsFilter" && <BsFilter />}
+        {serverPage === "callFilters" && <Callfilters />}
         {serverPage === "callPermissions" && <CallPermissions />}
         {serverPage === "callPickup" && <CallPickup />}
         {serverPage === "schedules" && <Schedules />}
@@ -51,6 +59,12 @@ const Main = () => {
         {serverPage === "queues" && <Queues />}
         {serverPage === "skillrules" && <SkillRules />}
         {serverPage === "skills" && <Skills />}
+
+        {serverPage === "identities" && <Identities />}
+        {serverPage === "policiesGroups" && <PoliciesGroups />}
+        {serverPage === "policies" && <Policies />}
+        {serverPage === "ldap" && <Ldap />}
+        {serverPage === "externalAuth" && <ExternalAuth />}
 
         {serverPage === "extensions" && <Extensions />}
         {serverPage === "contexts" && <Contexts />}

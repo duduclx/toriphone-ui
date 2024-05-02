@@ -1,33 +1,34 @@
 import React, { useEffect } from 'react'
 
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  TableCaption,
-  TableContainer,
-  Flex,
-  Td,
-} from "@chakra-ui/react";
+    Table,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    TableCaption,
+    TableContainer,
+    Flex,
+    Td,
+  } from "@chakra-ui/react";
 
-  import { useApi } from '../../../../services/ApiProvider';
+import { useApi } from '../../../../services/ApiProvider';
 
-  import DevicesTableContent from './DevicesTableContent';
+import PoliciesGroupsTableContent from './PoliciesGroupsTableContent';
 
-const DevicesTable = () => {
-    const { tenantCurrent, devices, devicesGet } = useApi();
+const PoliciesGroupsTable = () => {
+    const { tenantCurrent, policiesGroups, policiesGroupsGet } = useApi()
+    console.log('sk', policiesGroups)
 
     useEffect(() => {
       if (tenantCurrent) {
-        devicesGet();
+        policiesGroupsGet();
       }
     }, [tenantCurrent]);
   
     return (
       <>
-      {devices?.items && (
+      {policiesGroups?.items && (
       <Flex
         flexDirection="column"
         justifyContent="center"
@@ -51,13 +52,13 @@ const DevicesTable = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {devices.items.length == 0 ? (
+              {policiesGroups.items.length == 0 ? (
                 <Tr>
                   <Td colSpan="5" textAlign="center">Aucun résultat</Td>
                 </Tr>
               ) : (
-                devices.items.map((device, index) => (
-                  <DevicesTableContent device={device} key={index} />
+                policiesGroups.items.map((policiesGroup, index) => (
+                  <PoliciesGroupsTableContent policiesGroup={policiesGroup} key={index} />
                 ))
               )}
             </Tbody>
@@ -69,4 +70,4 @@ const DevicesTable = () => {
     )
 }
 
-export default DevicesTable
+export default PoliciesGroupsTable

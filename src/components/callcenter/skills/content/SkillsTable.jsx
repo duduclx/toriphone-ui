@@ -1,33 +1,33 @@
 import React, { useEffect } from 'react'
 
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  TableCaption,
-  TableContainer,
-  Flex,
-  Td,
-} from "@chakra-ui/react";
+    Table,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    TableCaption,
+    TableContainer,
+    Flex,
+    Td,
+  } from "@chakra-ui/react";
 
-  import { useApi } from '../../../../services/ApiProvider';
+import { useApi } from '../../../../services/ApiProvider';
 
-  import DevicesTableContent from './DevicesTableContent';
+import SkillsTableContent from './SkillsTableContent'
 
-const DevicesTable = () => {
-    const { tenantCurrent, devices, devicesGet } = useApi();
+const SkillsTable = () => {
+    const { tenantCurrent, skills, skillsGet } = useApi()
 
     useEffect(() => {
       if (tenantCurrent) {
-        devicesGet();
+        skillsGet();
       }
     }, [tenantCurrent]);
   
     return (
       <>
-      {devices?.items && (
+      {skills?.items && (
       <Flex
         flexDirection="column"
         justifyContent="center"
@@ -51,13 +51,13 @@ const DevicesTable = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {devices.items.length == 0 ? (
+              {skills.items.length == 0 ? (
                 <Tr>
                   <Td colSpan="5" textAlign="center">Aucun résultat</Td>
                 </Tr>
               ) : (
-                devices.items.map((device, index) => (
-                  <DevicesTableContent device={device} key={index} />
+                skills.items.map((skill, index) => (
+                  <SkillsTableContent skill={skill} key={index} />
                 ))
               )}
             </Tbody>
@@ -69,4 +69,4 @@ const DevicesTable = () => {
     )
 }
 
-export default DevicesTable
+export default SkillsTable

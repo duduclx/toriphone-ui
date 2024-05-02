@@ -1,6 +1,8 @@
 import React from 'react'
 import { Flex, Text, Divider, useColorModeValue } from '@chakra-ui/react'
 
+import QueuesTable from './content/QueuesTable';
+
 const Queues = () => {
     const pageBg = useColorModeValue("pageBg.light", "pageBg.dark");
     return (
@@ -8,7 +10,7 @@ const Queues = () => {
           <Text p={2} as='b' fontSize='3xl'>Queues</Text>
           <Divider />
           <Flex flexDirection="row" flex="1" p="2" flexWrap="wrap" overflowX="auto" justifyContent="flex-start" alignContent="flex-start">
-          
+            <QueuesTable />
           </Flex>
       </Flex>
     )

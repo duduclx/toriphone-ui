@@ -3,20 +3,20 @@ import { useState } from "react";
 import { useAuth } from "../AuthProvider";
 import { useTenants } from "./Tenants";
 
-export const usePolicies = () => {
+export const useLdap = () => {
     // requirements
     const { requester } = useAuth()
     const { tenantCurrent } = useTenants()
 
     // values
-    const [ policies, setPolicies ] = useState({})
+    const [ ldap, setLdap ] = useState({})
 
     // functions
-    const policiesGet = async () => {
+    const ldapGet = async () => {
         requester.setTenant(tenantCurrent.uuid)
-        const policiesList = await requester.get('auth/0.1/policies?recurse=false');
-        setPolicies(policiesList)
+        const ldapInfos = await requester.get('auth/0.1/backends/ldap');
+        setLdap(ldapInfos)
     }
 
-    return { policies, policiesGet }
+    return { ldap, ldapGet }
 }

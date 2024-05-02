@@ -3,20 +3,20 @@ import { useState } from "react";
 import { useAuth } from "../AuthProvider";
 import { useTenants } from "./Tenants";
 
-export const usePolicies = () => {
+export const useQueues = () => {
     // requirements
     const { requester } = useAuth()
     const { tenantCurrent } = useTenants()
 
     // values
-    const [ policies, setPolicies ] = useState({})
+    const [ queues, setQueues ] = useState()
 
     // functions
-    const policiesGet = async () => {
+    const queuesGet = async () => {
         requester.setTenant(tenantCurrent.uuid)
-        const policiesList = await requester.get('auth/0.1/policies?recurse=false');
-        setPolicies(policiesList)
+        const queuesList = await requester.get('confd/1.1/queues?recurse=false');
+        setQueues(queuesList)
     }
 
-    return { policies, policiesGet }
+    return { queues, queuesGet }
 }

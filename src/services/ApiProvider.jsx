@@ -13,7 +13,6 @@ import { useInfos } from "./api/Info";
 import { useTenants } from "./api/Tenants";
 import { useUsers } from "./api/Users";
 import { useGroups } from "./api/Groups";
-import { usePolicies } from "./api/Policies";
 import { useContexts } from "./api/Contexts";
 import { useSipTemplates } from "./api/SipTemplates";
 import { useExtensions } from "./api/Extensions";
@@ -26,6 +25,16 @@ import { useTrunks } from "./api/Trunks";
 import { useSchedules } from "./api/Schedules";
 import { useCallpickup } from "./api/Callpickup";
 import { useCallPermissions } from "./api/CallPermissions";
+import { useCallfilters } from "./api/CallFilters";
+import { useAgents } from "./api/Agents";
+import { useQueues } from "./api/Queues";
+import { useSkillsRules } from "./api/SkillsRules";
+import { useSkills } from "./api/Skills";
+import { useIdentities } from "./api/Identities";
+import { usePolicies } from "./api/Policies";
+import { usePoliciesGroups } from "./api/PoliciesGroups";
+import { useLdap } from "./api/Ldap";
+import { useExternals } from "./api/Externals";
 
 export const ApiProvider = ({children}) => {
     const { user } = useAuth();
@@ -34,7 +43,6 @@ export const ApiProvider = ({children}) => {
     const { tenants, tenantsGet, tenantCurrent, setTenantCurrent } = useTenants()
     const { users, usersGet, userCreate } = useUsers()
     const { groups, groupsGet } = useGroups()
-    const { policies, policiesGet } = usePolicies()
     const { contexts, contextsGet } = useContexts()
     const { sipTemplates, sipTemplatesGet } = useSipTemplates()
     const { extensions, extensionsGet } = useExtensions()
@@ -47,6 +55,16 @@ export const ApiProvider = ({children}) => {
     const { schedules, schedulesGet } = useSchedules()
     const { callpickups, callpickupsGet } = useCallpickup()
     const { callPermissions, callPermissionsGet } = useCallPermissions()
+    const { callfilters, callfiltersGet } = useCallfilters()
+    const { agents, agentsGet } = useAgents()
+    const { queues, queuesGet } = useQueues()
+    const { skillsRules, skillsRulesGet } = useSkillsRules()
+    const { skills, skillsGet } = useSkills()
+    const { identities, identitiesGet } = useIdentities()
+    const { policies, policiesGet } = usePolicies()
+    const { policiesGroups, policiesGroupsGet } = usePoliciesGroups()
+    const { ldap, ldapGet } = useLdap()
+    const { externalsConfig, externalsConfigGet, externalsServices, externalsServicesGet, externalsConfigList, externalsConfigListGet } = useExternals()
 
     const ALPHANUMERIC_POOL = 'abcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -96,8 +114,6 @@ export const ApiProvider = ({children}) => {
         userCreate,
         groups,
         groupsGet,
-        policies,
-        policiesGet,
         contexts,
         contextsGet,
         sipTemplates,
@@ -121,7 +137,31 @@ export const ApiProvider = ({children}) => {
         callpickups,
         callpickupsGet,
         callPermissions,
-        callPermissionsGet
+        callPermissionsGet,
+        callfilters,
+        callfiltersGet,
+        agents,
+        agentsGet,
+        queues,
+        queuesGet,
+        skillsRules,
+        skillsRulesGet,
+        skills,
+        skillsGet,
+        identities,
+        identitiesGet,
+        policies,
+        policiesGet,
+        policiesGroups,
+        policiesGroupsGet,
+        ldap,
+        ldapGet,
+        externalsConfig,
+        externalsConfigGet,
+        externalsServices,
+        externalsServicesGet,
+        externalsConfigList,
+        externalsConfigListGet
     }
 
     if (isLoading) {
