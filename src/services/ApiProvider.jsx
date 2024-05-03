@@ -35,6 +35,13 @@ import { usePolicies } from "./api/Policies";
 import { usePoliciesGroups } from "./api/PoliciesGroups";
 import { useLdap } from "./api/Ldap";
 import { useExternals } from "./api/Externals";
+import { useDird } from "./api/Dird";
+import { usePhonebooks } from "./api/Phonebooks";
+import { useConferences } from "./api/Conferences";
+import { useSwitchboards } from "./api/Switchboards";
+import { useIvrs } from "./api/Ivrs";
+import { useParkingLots } from "./api/ParkingLots";
+import { usePagings } from "./api/Pagings";
 
 export const ApiProvider = ({children}) => {
     const { user } = useAuth();
@@ -65,6 +72,13 @@ export const ApiProvider = ({children}) => {
     const { policiesGroups, policiesGroupsGet } = usePoliciesGroups()
     const { ldap, ldapGet } = useLdap()
     const { externalsConfig, externalsConfigGet, externalsServices, externalsServicesGet, externalsConfigList, externalsConfigListGet } = useExternals()
+    const { dirdProfiles, dirdProfilesGet, dirdSources, dirdSourcesGet } = useDird()
+    const { phonebooks, phonebooksGet } = usePhonebooks()
+    const { conferencesContactsList, conferencesContactsListGet } = useConferences()
+    const { switchboards, switchboardsGet } = useSwitchboards()
+    const { ivrs, ivrsGet } = useIvrs()
+    const { parkingLots, parkingLotsGet } = useParkingLots()
+    const { pagings, pagingsGet } = usePagings()
 
     const ALPHANUMERIC_POOL = 'abcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -161,7 +175,23 @@ export const ApiProvider = ({children}) => {
         externalsServices,
         externalsServicesGet,
         externalsConfigList,
-        externalsConfigListGet
+        externalsConfigListGet,
+        dirdProfiles,
+        dirdProfilesGet,
+        dirdSources,
+        dirdSourcesGet,
+        phonebooks,
+        phonebooksGet,
+        conferencesContactsList,
+        conferencesContactsListGet,
+        switchboards,
+        switchboardsGet,
+        ivrs,
+        ivrsGet,
+        parkingLots,
+        parkingLotsGet,
+        pagings,
+        pagingsGet
     }
 
     if (isLoading) {

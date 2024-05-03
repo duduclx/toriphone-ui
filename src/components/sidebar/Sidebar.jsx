@@ -35,7 +35,17 @@ import {
   FaCrown,
   FaCodeBranch,
   FaUserSecret,
-  FaLock
+  FaLock,
+  FaWrench,
+  FaExternalLinkAlt,
+  FaAddressBook,
+  FaRandom,
+  FaStar,
+  FaCompressAlt,
+  FaBars,
+  FaBullhorn,
+  FaCar,
+  FaDesktop
 } from "react-icons/fa";
 import {
   FaUsers,
@@ -387,7 +397,7 @@ const Sidebar = ({ serverPage, setServerPage }) => {
                     my={1}
                     w="100%"
                     justifyContent="flex-start"
-                    leftIcon={<FaCodeBranch />}
+                    leftIcon={<FaUser />}
                     onClick={() => setServerPage("identities")}
                     backgroundColor={
                       serverPage === "identities"
@@ -402,7 +412,7 @@ const Sidebar = ({ serverPage, setServerPage }) => {
                     my={1}
                     w="100%"
                     justifyContent="flex-start"
-                    leftIcon={<FaProjectDiagram />}
+                    leftIcon={<FaUserFriends />}
                     onClick={() => setServerPage("policiesGroups")}
                     backgroundColor={
                       serverPage === "policiesGroups"
@@ -432,7 +442,7 @@ const Sidebar = ({ serverPage, setServerPage }) => {
                     my={1}
                     w="100%"
                     justifyContent="flex-start"
-                    leftIcon={<FaLock />}
+                    leftIcon={<FaWrench />}
                     onClick={() => setServerPage("ldap")}
                     backgroundColor={
                       serverPage === "ldap"
@@ -447,7 +457,7 @@ const Sidebar = ({ serverPage, setServerPage }) => {
                     my={1}
                     w="100%"
                     justifyContent="flex-start"
-                    leftIcon={<FaLock />}
+                    leftIcon={<FaExternalLinkAlt />}
                     onClick={() => setServerPage("externalAuth")}
                     backgroundColor={
                       serverPage === "externalAuth"
@@ -456,6 +466,160 @@ const Sidebar = ({ serverPage, setServerPage }) => {
                     }
                   >
                     external auth
+                  </Button>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem
+                borderTop="none"
+                borderTopWidth="0"
+                borderBottom="none"
+                borderBottomWidth="0"
+              >
+                <AccordionButton>
+                  <HStack justifyContent="flex-start" width="100%">
+                    <FaAddressBook />
+                    <Text>directory</Text>
+                    <Spacer />
+                    <AccordionIcon />
+                  </HStack>
+                </AccordionButton>
+                <AccordionPanel>
+                  <Button
+                    variant="ghost"
+                    my={1}
+                    w="100%"
+                    justifyContent="flex-start"
+                    leftIcon={<FaUser />}
+                    onClick={() => setServerPage("profiles")}
+                    backgroundColor={
+                      serverPage === "profiles"
+                        ? "var(--chakra-colors-whiteAlpha-200)"
+                        : "transparent"
+                    }
+                  >
+                    profiles
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    my={1}
+                    w="100%"
+                    justifyContent="flex-start"
+                    leftIcon={<FaRandom />}
+                    onClick={() => setServerPage("sources")}
+                    backgroundColor={
+                      serverPage === "sources"
+                        ? "var(--chakra-colors-whiteAlpha-200)"
+                        : "transparent"
+                    }
+                  >
+                    sources
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    my={1}
+                    w="100%"
+                    justifyContent="flex-start"
+                    leftIcon={<FaUserFriends />}
+                    onClick={() => setServerPage("phonebooks")}
+                    backgroundColor={
+                      serverPage === "phonebooks"
+                        ? "var(--chakra-colors-whiteAlpha-200)"
+                        : "transparent"
+                    }
+                  >
+                    phonebooks
+                  </Button>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem
+                borderTop="none"
+                borderTopWidth="0"
+                borderBottom="none"
+                borderBottomWidth="0"
+              >
+                <AccordionButton>
+                  <HStack justifyContent="flex-start" width="100%">
+                    <FaStar />
+                    <Text>Services</Text>
+                    <Spacer />
+                    <AccordionIcon />
+                  </HStack>
+                </AccordionButton>
+                <AccordionPanel>
+                  <Button
+                    variant="ghost"
+                    my={1}
+                    w="100%"
+                    justifyContent="flex-start"
+                    leftIcon={<FaCompressAlt />}
+                    onClick={() => setServerPage("conferences")}
+                    backgroundColor={
+                      serverPage === "conferences"
+                        ? "var(--chakra-colors-whiteAlpha-200)"
+                        : "transparent"
+                    }
+                  >
+                    conferences
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    my={1}
+                    w="100%"
+                    justifyContent="flex-start"
+                    leftIcon={<FaBars />}
+                    onClick={() => setServerPage("ivrs")}
+                    backgroundColor={
+                      serverPage === "ivrs"
+                        ? "var(--chakra-colors-whiteAlpha-200)"
+                        : "transparent"
+                    }
+                  >
+                    ivrs
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    my={1}
+                    w="100%"
+                    justifyContent="flex-start"
+                    leftIcon={<FaBullhorn />}
+                    onClick={() => setServerPage("pagings")}
+                    backgroundColor={
+                      serverPage === "pagings"
+                        ? "var(--chakra-colors-whiteAlpha-200)"
+                        : "transparent"
+                    }
+                  >
+                    pagings
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    my={1}
+                    w="100%"
+                    justifyContent="flex-start"
+                    leftIcon={<FaCar />}
+                    onClick={() => setServerPage("parkingLots")}
+                    backgroundColor={
+                      serverPage === "parkingLots"
+                        ? "var(--chakra-colors-whiteAlpha-200)"
+                        : "transparent"
+                    }
+                  >
+                    parking Lots
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    my={1}
+                    w="100%"
+                    justifyContent="flex-start"
+                    leftIcon={<FaDesktop />}
+                    onClick={() => setServerPage("switchboards")}
+                    backgroundColor={
+                      serverPage === "switchboards"
+                        ? "var(--chakra-colors-whiteAlpha-200)"
+                        : "transparent"
+                    }
+                  >
+                    switchboards
                   </Button>
                 </AccordionPanel>
               </AccordionItem>

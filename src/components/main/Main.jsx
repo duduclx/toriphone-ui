@@ -28,6 +28,16 @@ import Policies from "../credentials/policies/Policies";
 import Ldap from "../credentials/ldap/Ldap";
 import ExternalAuth from "../credentials/externalAuth/ExternalAuth";
 
+import Profiles from "../directory/profile/Profiles";
+import Sources from "../directory/sources/Sources";
+import Phonebooks from "../directory/phonebooks/Phonebooks";
+
+import Conferences from "../services/conferences/Conferences";
+import Switchboards from "../services/switchboards/Switchboards";
+import Ivrs from "../services/ivrs/Ivrs";
+import ParkingLots from "../services/parkingLots/ParkingLots";
+import Pagings from "../services/pagings/Pagings";
+
 import Extensions from "../settings/extensions/Extensions";
 import Contexts from "../settings/contexts/Contexts";
 import SipTemplates from "../settings/siptemplates/SipTemplates";
@@ -65,6 +75,16 @@ const Main = () => {
         {serverPage === "policies" && <Policies />}
         {serverPage === "ldap" && <Ldap />}
         {serverPage === "externalAuth" && <ExternalAuth />}
+
+        {serverPage === "profiles" && <Profiles />}
+        {serverPage === "sources" && <Sources />}
+        {serverPage === "phonebooks" && <Phonebooks />}
+
+        {serverPage === "conferences" && <Conferences />}
+        {serverPage === "switchboards" && <Switchboards />}
+        {serverPage === "ivrs" && <Ivrs />}
+        {serverPage === "parkingLots" && <ParkingLots />}
+        {serverPage === "pagings" && <Pagings />}
 
         {serverPage === "extensions" && <Extensions />}
         {serverPage === "contexts" && <Contexts />}
