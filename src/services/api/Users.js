@@ -12,10 +12,16 @@ export const useUsers = () => {
     const [ users, setUsers ] = useState({}) // all users
 
     // functions
-    const usersGet = async () => {
-        requester.setTenant(tenantCurrent.uuid)
-        const usersList = await requester.get('confd/1.1/users?recurse=false')
-        setUsers(usersList)
+    const usersGet = async (tenantCurrent) => {
+        if (tenantCurrent && tenantCurrent.uuid) {
+            try {
+                requester.setTenant(tenantCurrent.uuid)
+                const usersList = await requester.get('confd/1.1/users?recurse=false')
+                setUsers(usersList)
+            } catch (e) {
+                // error
+            }
+        }
     }
 
     const userCreate = async (user) => {

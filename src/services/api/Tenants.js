@@ -18,5 +18,7 @@ export const useTenants = () => {
         setTenantCurrent(allTenants.items[0])
     }
 
+    // mettre à jour le tenantcurrent !!
+
     return { tenants, tenantCurrent, tenantsGet, setTenantCurrent };
 };

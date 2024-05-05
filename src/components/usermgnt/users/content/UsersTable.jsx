@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
   Table,
@@ -17,8 +17,14 @@ import { useApi } from "../../../../services/ApiProvider";
 import UsersTableContent from "./UsersTableContent";
 
 const UsersTable = () => {
-  //const { tenantUsers } = useApi();
-  const { users } = useApi();
+  const { tenantCurrent, users, usersGet } = useApi();
+
+  useEffect(() => {
+    if (tenantCurrent) {
+      usersGet(tenantCurrent);
+    }
+  }, [tenantCurrent]);
+
 
   return (
     <>

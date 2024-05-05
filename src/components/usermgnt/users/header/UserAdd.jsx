@@ -24,7 +24,12 @@ const UserAdd = () => {
       email: '',
       password: ''
     })
-    const [selectedContext, setSelectedContext] = useState(contexts.items[0].name);
+
+    // si pas de context (master), contexts = undefined
+    const initialContextName = contexts && contexts.items.length > 0 ? contexts.items[0].name : '';
+    //const [selectedContext, setSelectedContext] = useState(contexts.items[0].name);
+    const [selectedContext, setSelectedContext] = useState(initialContextName);
+
     const [availableExtensions, setAvailableExtensions] = useState([]);
 
     console.log('tenantSipTemplates', sipTemplates)
@@ -34,9 +39,6 @@ const UserAdd = () => {
       if (selectedContext) {
           // Créer un tableau pour stocker toutes les extensions disponibles
           let allExtens = [];
-
-          console.log('ctx', contexts)
-          console.log('tenantext', extensions)
   
           // Parcourir chaque objet user_ranges dans tenantContexts.items
           contexts.items.forEach(item => {

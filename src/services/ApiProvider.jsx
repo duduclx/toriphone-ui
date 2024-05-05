@@ -125,6 +125,7 @@ export const ApiProvider = ({children}) => {
         tenantCurrent,
         setTenantCurrent,
         users,
+        usersGet,
         userCreate,
         groups,
         groupsGet,

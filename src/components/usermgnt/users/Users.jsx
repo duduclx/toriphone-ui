@@ -7,6 +7,7 @@ import UsersTable from "./content/UsersTable";
 
 const Users = () => {
   const pageBg = useColorModeValue("pageBg.light", "pageBg.dark");
+
   return (
     <Flex flexDirection="column" flex="1" p={2} bg={pageBg}>
       <Text p={2} as="b" fontSize="3xl">
@@ -14,7 +15,9 @@ const Users = () => {
       </Text>
       <Divider />
       <Flex m="4" justifyContent="flex-end">
+        {
         <UserAdd />
+}
       </Flex>
       <Flex
         flexDirection="row"

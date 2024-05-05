@@ -1,10 +1,9 @@
 import { Select, useColorModeValue } from '@chakra-ui/react'
 
 import { useApi } from '../../../services/ApiProvider';
-import { useEffect } from 'react';
 
 const Tenants = () => {
-  const {tenants, tenantCurrent, setTenantCurrent} = useApi();
+  const { tenants, tenantCurrent, setTenantCurrent } = useApi();
   const cardContentBg = useColorModeValue(
     "cardContentBg.light",
     "cardContentBg.dark"
@@ -13,6 +12,8 @@ const Tenants = () => {
   const handleTenantChange = (e) => {
     const tenant = tenants.items.find(item => item.uuid === e.target.value)
     setTenantCurrent(tenant)
+    console.log('tenant', tenant)
+    console.log('current', tenantCurrent)
   }
 
   return (
