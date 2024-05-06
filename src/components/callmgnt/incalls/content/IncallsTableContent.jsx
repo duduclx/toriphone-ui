@@ -6,9 +6,9 @@ import { FaPen, FaTrashAlt } from "react-icons/fa";
 const IncallsTableContent = ({incalls}) => {
   return (
     <Tr>
-      <Td>{incalls.label}</Td>
-      <Td>{incalls.name}</Td>
-      <Td>{incalls.type}</Td>
+      <Td>{incalls.extensions[0].exten}</Td>
+      <Td>{incalls.extensions[0].context}</Td>
+      <Td>{incalls.destination.type}</Td>
       <Td>actions</Td>
     </Tr>
   )

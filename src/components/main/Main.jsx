@@ -4,6 +4,7 @@ import { ApiProvider } from "../../services/ApiProvider";
 import Sidebar from "../sidebar/Sidebar";
 
 import Users from "../usermgnt/users/Users";
+import UserCreate from "../usermgnt/users/UserCreate";
 import Groups from "../usermgnt/groups/Groups";
 import Lines from "../usermgnt/lines/Lines";
 import Devices from "../usermgnt/devices/Devices";
@@ -45,13 +46,16 @@ import SipTemplates from "../settings/siptemplates/SipTemplates";
 
 import { Flex } from "@chakra-ui/react";
 
+import { useApi } from "../../services/ApiProvider";
+
 const Main = () => {
-  const [serverPage, setServerPage] = useState("users");
+  //const [serverPage, setServerPage] = useState("users");
+  const { serverPage, setServerPage } = useApi()
   return (
-    <ApiProvider>
       <Flex flex="1">
         <Sidebar serverPage={serverPage} setServerPage={setServerPage} />
         {serverPage === "users" && <Users />}
+        {serverPage === "userCreate" && <UserCreate />}
         {serverPage === "groups" && <Groups />}
         {serverPage === "lines" && <Lines />}
         {serverPage === "devices" && <Devices />}
@@ -90,7 +94,6 @@ const Main = () => {
         {serverPage === "contexts" && <Contexts />}
         {serverPage === "siptemplates" && <SipTemplates />}
       </Flex>
-    </ApiProvider>
   );
 };
 

@@ -44,8 +44,12 @@ import { useParkingLots } from "./api/ParkingLots";
 import { usePagings } from "./api/Pagings";
 
 export const ApiProvider = ({children}) => {
+    // requirements
     const { user } = useAuth();
+    // states
     const [ isLoading, setIsLoading ] = useState(true)
+    const [ serverPage, setServerPage ] = useState("users");
+    // apis
     const { serverInfos, serverInfosGet } = useInfos()
     const { tenants, tenantsGet, tenantCurrent, setTenantCurrent } = useTenants()
     const { users, usersGet, userCreate } = useUsers()
@@ -119,6 +123,8 @@ export const ApiProvider = ({children}) => {
     }, [user])
 
     const value = {
+        serverPage,
+        setServerPage,
         serverInfos,
         tenants,
         tenantsGet,

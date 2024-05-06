@@ -19,6 +19,7 @@ import IncallsTableContent from './IncallsTableContent';
 const IncallsTable = () => {
     const { tenantCurrent, incalls, incallsGet } = useApi()
 
+    console.log('incalls', incalls)
     useEffect(() => {
         if (tenantCurrent) {
             incallsGet();

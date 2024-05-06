@@ -3,6 +3,7 @@ import React from "react";
 import { Flex, Text, Divider, useColorModeValue } from "@chakra-ui/react";
 
 import UserAdd from "./header/UserAdd";
+import UserAddButton from "./header/UserAddButton";
 import UsersTable from "./content/UsersTable";
 
 const Users = () => {
@@ -15,9 +16,7 @@ const Users = () => {
       </Text>
       <Divider />
       <Flex m="4" justifyContent="flex-end">
-        {
-        <UserAdd />
-}
+        <UserAddButton />
       </Flex>
       <Flex
         flexDirection="row"
