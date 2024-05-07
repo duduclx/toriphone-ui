@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, InputGroup, Input, Text } from '@chakra-ui/react'
+import { Flex, InputGroup, Input, Text, Checkbox } from '@chakra-ui/react'
 
 const UserCreateStepOne = ({newUser, setNewUser}) => {
   return (
@@ -18,6 +18,7 @@ const UserCreateStepOne = ({newUser, setNewUser}) => {
             <Input 
             placeholder="mot de passe"
             onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}/>
+        <Checkbox>administrateur si activé mettre wazo_default_admin_policy</Checkbox>
         </InputGroup>
     </Flex>
   )

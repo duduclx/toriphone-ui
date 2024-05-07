@@ -42,6 +42,7 @@ import { useSwitchboards } from "./api/Switchboards";
 import { useIvrs } from "./api/Ivrs";
 import { useParkingLots } from "./api/ParkingLots";
 import { usePagings } from "./api/Pagings";
+import { useRegistrars } from "./api/Registrars";
 
 export const ApiProvider = ({children}) => {
     // requirements
@@ -52,14 +53,14 @@ export const ApiProvider = ({children}) => {
     // apis
     const { serverInfos, serverInfosGet } = useInfos()
     const { tenants, tenantsGet, tenantCurrent, setTenantCurrent } = useTenants()
-    const { users, usersGet, userCreate } = useUsers()
+    const { users, usersGet, userCreate, userAssociateLine } = useUsers()
     const { groups, groupsGet } = useGroups()
     const { contexts, contextsGet } = useContexts()
     const { sipTemplates, sipTemplatesGet } = useSipTemplates()
     const { extensions, extensionsGet } = useExtensions()
     const { voicemails, voicemailsGet } = useVoicemails()
     const { devices, devicesGet } = useDevices()
-    const { lines, linesGet } = useLines()
+    const { lines, linesGet, lineCreate } = useLines()
     const { incalls, incallsGet } = useIncalls()
     const { outcalls, outcallsGet } = useOutcalls()
     const { trunks, trunksGet } = useTrunks()
@@ -83,22 +84,8 @@ export const ApiProvider = ({children}) => {
     const { ivrs, ivrsGet } = useIvrs()
     const { parkingLots, parkingLotsGet } = useParkingLots()
     const { pagings, pagingsGet } = usePagings()
+    const { registrars, registrarsGet } = useRegistrars()
 
-    const ALPHANUMERIC_POOL = 'abcdefghijklmnopqrstuvwxyz0123456789';
-
-    // Fonction pour générer une chaîne aléatoire
-    const generateString = (length = 8) => {
-        let result = '';
-        for (let i = 0; i < length; i++) {
-            result += ALPHANUMERIC_POOL.charAt(Math.floor(Math.random() * ALPHANUMERIC_POOL.length));
-        }
-        return result;
-    };
-
-    const userCreateLineSip = () => {
-        const name = generateString()
-
-    }
 
     useEffect(() => {
         if (tenantCurrent) {
@@ -133,6 +120,7 @@ export const ApiProvider = ({children}) => {
         users,
         usersGet,
         userCreate,
+        userAssociateLine,
         groups,
         groupsGet,
         contexts,
@@ -147,6 +135,7 @@ export const ApiProvider = ({children}) => {
         voicemailsGet,
         lines,
         linesGet,
+        lineCreate,
         incalls,
         incallsGet,
         outcalls,
@@ -198,7 +187,9 @@ export const ApiProvider = ({children}) => {
         parkingLots,
         parkingLotsGet,
         pagings,
-        pagingsGet
+        pagingsGet,
+        registrars,
+        registrarsGet
     }
 
     if (isLoading) {

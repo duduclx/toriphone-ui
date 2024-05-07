@@ -9,131 +9,64 @@ import UserCreateStepTwo from "./UserCreateStepTwo";
 import UserCreateStepThree from "./UserCreateStepThree";
 
 const UserCreateSteps = ({ steps, activeStep }) => {
-  const { tenantUsersGroups, sipTemplates, extensions, contexts, userCreate } =
-    useApi();
+  const {
+    policiesGroups,
+    policiesGroupsGet,
+    sipTemplates,
+    extensions,
+    contexts,
+    userCreate,
+    lineCreate,
+    userAssociateLine
+  } = useApi();
+
+  // optionnel
+  const protocoles = ["SIP", "SCCP", "CUSTOM"];
+
+  // si pas de context (master), contexts = undefined
+  const initialContextName =
+    contexts && contexts.items.length > 0 ? contexts.items[0].name : "";
+  //const [selectedContext, setSelectedContext] = useState(contexts.items[0].name);
+  const [selectedContext, setSelectedContext] = useState(initialContextName);
+
   const [newUser, setNewUser] = useState({
     firstname: "",
     lastname: "",
     email: "",
     password: "",
   });
-  const [line, setLine] = useState(
-    {
-        "caller_id_name": "string",
-        "caller_id_num": "string",
-        "context": "string",
-        "id": 0,
-        "position": 0,
-        "provisioning_code": "string",
-        "registrar": "string",
-        "extensions": [
-          {
-            "context": "string",
-            "exten": "string",
-            "id": 0
-          }
-        ],
-        "endpoint_sip": {
-          "aor_section_options": [
-            [
-              "option",
-              "value"
-            ]
-          ],
-          "asterisk_id": "string",
-          "auth_section_options": [
-            [
-              "option",
-              "value"
-            ]
-          ],
-          "endpoint_section_options": [
-            [
-              "option",
-              "value"
-            ]
-          ],
-          "identify_section_options": [
-            [
-              "option",
-              "value"
-            ]
-          ],
-          "label": "string",
-          "name": "string",
-          "outbound_auth_section_options": [
-            [
-              "option",
-              "value"
-            ]
-          ],
-          "registration_outbound_auth_section_options": [
-            [
-              "option",
-              "value"
-            ]
-          ],
-          "registration_section_options": [
-            [
-              "option",
-              "value"
-            ]
-          ],
-          "templates": [
-            {
-              "label": "string",
-              "uuid": "string"
-            }
-          ],
-          "tenant_uuid": "string",
-          "transport": {
-            "uuid": "string"
-          },
-          "uuid": "string"
-        },
-        "endpoint_sccp": {
-          "id": 0,
-          "trunk": {
-            "id": 0,
-            "tenant_uuid": "string"
-          },
-          "line": [
-            {
-              "id": 0,
-              "name": "string"
-            }
-          ],
-          "options": [
-            [
-              "option",
-              "value"
-            ]
-          ],
-          "tenant_uuid": "string"
-        },
-        "endpoint_custom": {
-          "id": 0,
-          "interface": "string",
-          "trunk": {
-            "id": 0,
-            "tenant_uuid": "string"
-          },
-          "line": [
-            {
-              "id": 0,
-              "name": "string"
-            }
-          ],
-          "enabled": true,
-          "tenant_uuid": "string"
-        }
-      }
-  )
-  // si pas de context (master), contexts = undefined
-  const initialContextName =
-    contexts && contexts.items.length > 0 ? contexts.items[0].name : "";
-  //const [selectedContext, setSelectedContext] = useState(contexts.items[0].name);
-  const [selectedContext, setSelectedContext] = useState(initialContextName);
+
+  const [extension, setExtension] = useState('')
+
+  const [sipTemplate, setSipTemplate] = useState(
+    sipTemplates.items.find((item) => item.label === "webrtc")
+  );
+
+  const [line, setLine] = useState({
+    firstname: newUser.firstname,
+    lastname: newUser.lastname,
+    sipTemplate: {
+      label: sipTemplate.label,
+      uuid: sipTemplate.uuid,
+    },
+    extension: {
+      context: selectedContext,
+      exten: extension,
+    },
+  });
+
+  useEffect(() => {
+    policiesGroupsGet();
+  }, []);
+
+  /*
+  const handleAddUserWithLine = async () => {
+    const createUser = await userCreate(newUser)
+    console.log('send line', line)
+    const createLine = await lineCreate(line)
+    const asso = await userAssociateLine(createUser, createLine)
+  }
+  */
 
   const [availableExtensions, setAvailableExtensions] = useState([]);
 
@@ -141,7 +74,6 @@ const UserCreateSteps = ({ steps, activeStep }) => {
   useEffect(() => {
     if (selectedContext) {
       let allExtens = [];
-      console.log('sected cont', selectedContext)
 
       contexts.items.forEach((item) => {
         if (item.name === selectedContext) {
@@ -165,7 +97,6 @@ const UserCreateSteps = ({ steps, activeStep }) => {
   }, [selectedContext, contexts, extensions]);
 
   // wazo comm for bill const subscriptionTypes = ['Voice', 'Unified Communication', 'Collaboration', 'Customer Relationship']
-  const protocoles = ["SIP", "SCCP", "CUSTOM"];
 
   return (
     <Flex flex="1" flexDirection="column" p="12">
@@ -180,6 +111,7 @@ const UserCreateSteps = ({ steps, activeStep }) => {
               contexts={contexts}
               setSelectedContext={setSelectedContext}
               availableExtensions={availableExtensions}
+              setExtension={setExtension}
               protocoles={protocoles}
               templates={sipTemplates}
             />

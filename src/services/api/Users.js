@@ -57,6 +57,7 @@ export const useUsers = () => {
                 ...prevState,
                 items: [...prevState.items, newUser]
             }));
+            return newUser
         } catch (e) {
             console.log(e)
         }
@@ -66,6 +67,17 @@ export const useUsers = () => {
         requester.setTenant(tenantCurrent.uuid)
     }
 
-    return {users, usersGet, userCreate}
+    const userAssociateLine = async (user, line) => {
+        requester.setTenant(tenantCurrent.uuid)
+        try {
+            const userline = await requester.post(`confd/1.1/users/${user.id}/lines/${line.id}`, null, null, requester.successResponseParser)
+            console.log('userline', userline)
+            return userline
+        } catch (e) {
+            console.log('error', e)
+        }
+    }
+
+    return { users, usersGet, userCreate, userAssociateLine }
     
 }

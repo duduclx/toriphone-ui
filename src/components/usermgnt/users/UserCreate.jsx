@@ -12,7 +12,6 @@ import {
   StepStatus,
   StepTitle,
   Stepper,
-  Text,
   useSteps,
   useColorModeValue,
   Flex,
@@ -23,7 +22,7 @@ import UserCreateSteps from "./content/UserCreateSteps";
 import { useApi } from "../../../services/ApiProvider";
 
 const UserCreate = () => {
-  const { userCreate } = useApi();
+  const { userCreate, lineCreate, userAssociateLine } = useApi();
   const pageBg = useColorModeValue("pageBg.light", "pageBg.dark");
 
   const steps = [
@@ -36,6 +35,13 @@ const UserCreate = () => {
     index: 0,
     count: steps.length,
   });
+
+  const handleAddUserWithLine = async (newUser, line) => {
+    const createUser = await userCreate(newUser)
+    console.log('send line', line)
+    const createLine = await lineCreate(line)
+    const asso = await userAssociateLine(createUser, createLine)
+  }
 
   return (
     <Flex flex="1" flexDirection="column" bg={pageBg} p="12">
