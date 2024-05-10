@@ -69,15 +69,51 @@ export const useUsers = () => {
 
     const userAssociateLine = async (user, line) => {
         requester.setTenant(tenantCurrent.uuid)
+        const userId = user.id.toString()
+        const lineId = line.id.toString()
         try {
-            const userline = await requester.post(`confd/1.1/users/${user.id}/lines/${line.id}`, null, null, requester.successResponseParser)
-            console.log('userline', userline)
-            return userline
+            requester.put(`confd/1.1/users/${userId}/lines/${lineId}`);
+            return true
         } catch (e) {
             console.log('error', e)
         }
     }
 
-    return { users, usersGet, userCreate, userAssociateLine }
+    const userCreateVoicemail = async (user, line) => {
+        requester.setTenant(tenantCurrent.uuid)
+
+        const userId = user.id.toString()
+
+        const voicemailOptions = {
+            ask_password: false,
+            attach_audio: false,
+            context: line.extensions[0].context,
+            delete_messages: false,
+            email: user.email,
+            enabled: true,
+            language: "fr_FR",
+            number: line.extensions[0].exten,
+            tenant_uuid: user.tenant_uuid,
+            timezone: "eu-fr",
+            name: user.firstname + " " + user.lastname,
+            users: [
+              {
+                firstname: user.firstname,
+                lastname: user.lastname,
+                uuid: user.uuid
+              }
+            ]
+          }
+        
+        try {
+            const voicemail = await requester.post(`confd/1.1/users/${userId}/voicemails`, voicemailOptions, null, requester.successResponseParser)
+            return voicemail
+        } catch (e) {
+            console.log('error', e)
+        }
+        
+    }
+
+    return { users, usersGet, userCreate, userAssociateLine, userCreateVoicemail }
     
 }

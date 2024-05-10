@@ -25,7 +25,6 @@ const UsersTable = () => {
     }
   }, [tenantCurrent]);
 
-
   return (
     <>
     {users?.items && (

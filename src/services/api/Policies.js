@@ -18,5 +18,13 @@ export const usePolicies = () => {
         setPolicies(policiesList)
     }
 
-    return { policies, policiesGet }
+    const policieUserAdd = async (user, policie) => {
+        requester.setTenant(tenantCurrent.uuid)
+        const userUuid = user.uuid.toString()
+        const policieUuid = policie.uuid.toString()
+        requester.put(`auth/0.1/users/${userUuid}/policies/${policieUuid}`);
+        return true
+     }
+
+    return { policies, policiesGet, policieUserAdd }
 }

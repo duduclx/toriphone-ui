@@ -10,9 +10,11 @@ import {
 const UserCreateStepTwo = ({
   contexts,
   setSelectedContext,
+  setSelectedContextName,
   availableExtensions,
-  protocoles,
-  templates,
+  setExtension,
+  line,
+  setLine
 }) => {
 
   const pageBg = useColorModeValue("pageBg.light", "pageBg.dark");
@@ -26,7 +28,10 @@ const UserCreateStepTwo = ({
 
         <Text>Numéro de ligne :</Text>
         <Select
-          onChange={(e) => setSelectedContext(e.target.value)}
+          onChange={(e) => {
+            setSelectedContextName(e.target.value.name)
+            setSelectedContext(e.target.value)
+          }}
           bg={pageBg}
           sx={{
             "> option": {
@@ -35,7 +40,7 @@ const UserCreateStepTwo = ({
           }}
         >
           {contexts.items.map((item) => (
-            <option value={item.name} key={item.uuid}>
+            <option value={item} key={item.uuid}>
               {item.label}
             </option>
           ))}
@@ -46,7 +51,17 @@ const UserCreateStepTwo = ({
           "> option": {
             background: pageBg,
           },
-        }}>
+        }}
+        onChange={(e) => {
+          setExtension(e.target.value)
+          setLine({
+            ...line,
+            extensions: {
+              ...line.extensions,
+              exten: e.target.value
+            }
+          });
+          }}>
             {availableExtensions.map((item, index) => (
                 <option value={item} key={index}>
                     {item}
@@ -54,7 +69,7 @@ const UserCreateStepTwo = ({
             ))}
 
         </Select>
-
+        {/*
         <Text>Type de ligne :</Text>
         <Select
           bg={pageBg}
@@ -83,6 +98,8 @@ const UserCreateStepTwo = ({
             <option key={index}>{item.label}</option>
           ))}
         </Select>
+          */}
+
       </Flex>
     </Flex>
   );

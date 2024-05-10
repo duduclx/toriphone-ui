@@ -1,10 +1,19 @@
 import React from 'react'
 
-const UserCreateStepThree = () => {
+import { Checkbox, Flex } from '@chakra-ui/react'
+
+const UserCreateStepThree = ({addVoicemail, setAddVoicemail}) => {
+
+  const handleCheckboxChange = (event) => {
+    setAddVoicemail(event.target.checked);
+  };
+
   return (
-    <div>
-        Creer une messagerie pour l'utilisateur ??
-    </div>
+    <Flex flex="1" justifyContent="center" alignItems="center">
+      <Checkbox 
+      checked={addVoicemail}
+      onChange={(event) => handleCheckboxChange(event)}>Activer la messagerie</Checkbox>
+    </Flex>
   )
 }
 

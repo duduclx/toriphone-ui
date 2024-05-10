@@ -53,9 +53,9 @@ export const ApiProvider = ({children}) => {
     // apis
     const { serverInfos, serverInfosGet } = useInfos()
     const { tenants, tenantsGet, tenantCurrent, setTenantCurrent } = useTenants()
-    const { users, usersGet, userCreate, userAssociateLine } = useUsers()
+    const { users, usersGet, userCreate, userAssociateLine, userCreateVoicemail } = useUsers()
     const { groups, groupsGet } = useGroups()
-    const { contexts, contextsGet } = useContexts()
+    const { contexts, contextsGet, contextRange, contextRangeGet } = useContexts()
     const { sipTemplates, sipTemplatesGet } = useSipTemplates()
     const { extensions, extensionsGet } = useExtensions()
     const { voicemails, voicemailsGet } = useVoicemails()
@@ -73,7 +73,7 @@ export const ApiProvider = ({children}) => {
     const { skillsRules, skillsRulesGet } = useSkillsRules()
     const { skills, skillsGet } = useSkills()
     const { identities, identitiesGet } = useIdentities()
-    const { policies, policiesGet } = usePolicies()
+    const { policies, policiesGet, policieUserAdd } = usePolicies()
     const { policiesGroups, policiesGroupsGet } = usePoliciesGroups()
     const { ldap, ldapGet } = useLdap()
     const { externalsConfig, externalsConfigGet, externalsServices, externalsServicesGet, externalsConfigList, externalsConfigListGet } = useExternals()
@@ -94,6 +94,7 @@ export const ApiProvider = ({children}) => {
             extensionsGet()
             groupsGet()
             sipTemplatesGet()
+            policiesGet()
         }
     }, [tenantCurrent]);
 
@@ -121,10 +122,13 @@ export const ApiProvider = ({children}) => {
         usersGet,
         userCreate,
         userAssociateLine,
+        userCreateVoicemail,
         groups,
         groupsGet,
         contexts,
         contextsGet,
+        contextRange,
+        contextRangeGet,
         sipTemplates,
         sipTemplatesGet,
         extensions,
@@ -164,6 +168,7 @@ export const ApiProvider = ({children}) => {
         policiesGet,
         policiesGroups,
         policiesGroupsGet,
+        policieUserAdd,
         ldap,
         ldapGet,
         externalsConfig,

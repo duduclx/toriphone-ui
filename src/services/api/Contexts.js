@@ -10,6 +10,7 @@ export const useContexts = () => {
 
     // values
     const [ contexts, setContexts ] = useState({})
+    const [ contextRange, setContextRange ] = useState({})
 
     // functions
     const contextsGet = async () => {
@@ -18,5 +19,11 @@ export const useContexts = () => {
         setContexts(contexts)
     }
 
-    return { contexts, contextsGet}
+    const contextRangeGet = async (contextId) => {
+        requester.setTenant(tenantCurrent.uuid)
+        const range = await requester.get(`confd/1.1/contexts/${contextId}/ranges/user?availability=available`);
+        setContextRange(range)
+    }
+
+    return { contexts, contextsGet, contextRange, contextRangeGet }
 }

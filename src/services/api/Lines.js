@@ -30,33 +30,18 @@ export const useLines = () => {
     const lineCreate = async (line) => {
         requester.setTenant(tenantCurrent.uuid)
         const name = generateString()
-        const password = generateString(
-
-        )
-        /* 
-        line = {
-            firstname,
-            lastname,
-            sipTemplate: {
-                label,
-                uuid
-            },
-            extension: {
-                context,
-                exten
-            }
-        }
-        */
+        const password = generateString()
         const lineOptions = {
-            caller_id_name: firstname + " " + lastname,
-            caller_id_num: line.extension.exten,
-            context: "string",
-            position: 1,
+            caller_id_name: line.firstname + " " + line.lastname,
+            caller_id_num: line.extensions.exten.toString(),
+            context: line.extensions.context,
+            firstname: line.firstname,
+            lastname: line.lastname,
             registrar: "default",
             extensions: [
               {
-                context: line.extension.context,
-                exten: line.extension.exten,
+                context: line.extensions.context,
+                exten: line.extensions.exten.toString(),
               }
             ],
             endpoint_sip: {
@@ -82,7 +67,7 @@ export const useLines = () => {
           }
 
         try{
-            const newLine = await requester.post('confd/1.1/users', lineOptions, null, requester.successResponseParser)
+            const newLine = await requester.post('confd/1.1/lines', lineOptions)
             return newLine
         } catch (e) {
             console.log(e)
