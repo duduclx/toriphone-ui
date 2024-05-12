@@ -2,7 +2,6 @@ import React from "react";
 
 import { Flex, Text, Divider, useColorModeValue } from "@chakra-ui/react";
 
-import UserAdd from "./header/UserAdd";
 import UserAddButton from "./header/UserAddButton";
 import UsersTable from "./content/UsersTable";
 

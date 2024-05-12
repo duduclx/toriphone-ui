@@ -5,6 +5,7 @@ import Sidebar from "../sidebar/Sidebar";
 
 import Users from "../usermgnt/users/Users";
 import UserCreate from "../usermgnt/users/UserCreate";
+import UserEdit from "../usermgnt/users/UserEdit";
 import Groups from "../usermgnt/groups/Groups";
 import Lines from "../usermgnt/lines/Lines";
 import Devices from "../usermgnt/devices/Devices";
@@ -56,6 +57,7 @@ const Main = () => {
         <Sidebar serverPage={serverPage} setServerPage={setServerPage} />
         {serverPage === "users" && <Users />}
         {serverPage === "userCreate" && <UserCreate />}
+        {serverPage === "userEdit" && <UserEdit />}
         {serverPage === "groups" && <Groups />}
         {serverPage === "lines" && <Lines />}
         {serverPage === "devices" && <Devices />}

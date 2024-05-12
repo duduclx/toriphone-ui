@@ -9,7 +9,8 @@ export const useUsers = () => {
     const { tenantCurrent } = useTenants()
 
     // values
-    const [ users, setUsers ] = useState({}) // all users
+    const [ users, setUsers ] = useState({})
+    const [ userCurrent, setUserCurrent ] = useState({})
 
     // functions
     const usersGet = async (tenantCurrent) => {
@@ -114,6 +115,6 @@ export const useUsers = () => {
         
     }
 
-    return { users, usersGet, userCreate, userAssociateLine, userCreateVoicemail }
+    return { users, usersGet, userCurrent, setUserCurrent, userCreate, userAssociateLine, userCreateVoicemail }
     
 }

@@ -53,7 +53,7 @@ export const ApiProvider = ({children}) => {
     // apis
     const { serverInfos, serverInfosGet } = useInfos()
     const { tenants, tenantsGet, tenantCurrent, setTenantCurrent } = useTenants()
-    const { users, usersGet, userCreate, userAssociateLine, userCreateVoicemail } = useUsers()
+    const { users, usersGet, userCurrent, setUserCurrent, userCreate, userAssociateLine, userCreateVoicemail } = useUsers()
     const { groups, groupsGet } = useGroups()
     const { contexts, contextsGet, contextRange, contextRangeGet } = useContexts()
     const { sipTemplates, sipTemplatesGet } = useSipTemplates()
@@ -120,6 +120,8 @@ export const ApiProvider = ({children}) => {
         setTenantCurrent,
         users,
         usersGet,
+        userCurrent,
+        setUserCurrent,
         userCreate,
         userAssociateLine,
         userCreateVoicemail,
