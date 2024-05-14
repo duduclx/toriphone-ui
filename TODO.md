@@ -3,6 +3,12 @@
 https://github.com/wazo-communication/portal-plugins/tree/master
 
 
+## user Create Line
+
+réduire le choix des contexts au type "internal".
+si on change de context, alors "availableExtension" doit être remis à []
+vérifier l'étape pour pouvoir passer à la 2eme ou créer l'utilisateur !
+
 ## Auth
 
 si connexion avec un compte utilisateur

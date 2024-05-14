@@ -18,12 +18,16 @@ import { useApi } from "../../../services/ApiProvider";
 
 import UserEditUser from "./content/UserEditUser";
 import UserEditGeneral from "./content/UserEditGeneral";
-import UserEditAnswers from "./content/UserEditAnswers";
+import UserEditFallbacks from "./content/UserEditFallbacks";
+import UserEditForwards from "./content/UserEditForwards";
 import UserEditServices from "./content/UserEditServices";
 import UserEditLines from "./content/UserEditLines";
 import UserEditGroups from "./content/UserEditGroups";
 import UserEditSchedules from "./content/UserEditSchedules";
 import UserEditVoicemails from "./content/UserEditVoicemails";
+import UserEditSwitchboard from "./content/UserEditSwitchboard";
+import UserEditQueues from "./content/UserEditQueues";
+import UserEditCallPickup from "./content/UserEditCallPickup";
 import UserEditCallPermissions from "./content/UserEditCallPermissions";
 
 const UserEdit = () => {
@@ -50,28 +54,35 @@ const UserEdit = () => {
         alignContent="flex-start"
         className="hide-scrollbar"
       >
-        <Tabs align='end' width="100%" mt="4">
+        <Tabs align="end" mt="4" width="100%">
           <TabList>
             <Tab>Utilisateur</Tab>
             <Tab>Général</Tab>
             <Tab>Non réponse</Tab>
+            <Tab>Renvois</Tab>
             <Tab>Services</Tab>
             <Tab>Lignes</Tab>
             <Tab>Groupes</Tab>
             <Tab>Calendrier</Tab>
             <Tab>Messagerie</Tab>
+            <Tab>Switchboard</Tab>
+            <Tab>Queue</Tab>
+            <Tab>Call pickup</Tab>
             <Tab>Autorisations d'appel</Tab>
           </TabList>
 
-          <TabPanels>
-            <TabPanel>
+          <TabPanels >
+            <TabPanel width="50%">
               <UserEditUser userEdited={userEdited} setUserEdited={setUserEdited}/>
             </TabPanel>
             <TabPanel>
               <UserEditGeneral userEdited={userEdited} setUserEdited={setUserEdited}/>
             </TabPanel>
             <TabPanel>
-              <UserEditAnswers userEdited={userEdited} setUserEdited={setUserEdited}/>
+              <UserEditFallbacks userEdited={userEdited} setUserEdited={setUserEdited}/>
+            </TabPanel>
+            <TabPanel>
+              <UserEditForwards userEdited={userEdited} setUserEdited={setUserEdited}/>
             </TabPanel>
             <TabPanel>
               <UserEditServices userEdited={userEdited} setUserEdited={setUserEdited}/>
@@ -87,6 +98,15 @@ const UserEdit = () => {
             </TabPanel>
             <TabPanel>
               <UserEditVoicemails userEdited={userEdited} setUserEdited={setUserEdited}/>
+            </TabPanel>
+            <TabPanel>
+              <UserEditSwitchboard userEdited={userEdited} setUserEdited={setUserEdited}/>
+            </TabPanel>
+            <TabPanel>
+              <UserEditQueues userEdited={userEdited} setUserEdited={setUserEdited}/>
+            </TabPanel>
+            <TabPanel>
+              <UserEditCallPickup userEdited={userEdited} setUserEdited={setUserEdited}/>
             </TabPanel>
             <TabPanel>
               <UserEditCallPermissions userEdited={userEdited} setUserEdited={setUserEdited}/>
